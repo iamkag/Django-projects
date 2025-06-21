@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your Cart</h1>
+{% if cart_items %}
+  <ul>
+    {% for cart_item in cart_items %}
+      <li>
+        {{ cart_item.item.name }} - Quantity: {{ cart_item.quantity }} - Total: €{{ cart_item.item.price|floatformat:2|add:""|add:cart_item.quantity|floatformat:2 }}
+      </li>
+    {% endfor %}
+  </ul>
+  <form action="{% url 'buy' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Buy Now</button>
+  </form>
+{% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+<a href="{% url 'item_list' %}">Back to Shop</a>
+{% endblock %}
