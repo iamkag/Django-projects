@@ -18,7 +18,7 @@ class SignupView(CreateView):
         return super().get(request, *args, **kwargs)
 
 class LogoutInterfaceView(LogoutView):
-    template_name = 'home/logout.html'
+    template_name = 'logout.html'
 
 class LoginInterfaceView(LoginView):
     template_name = 'home/login.html'
